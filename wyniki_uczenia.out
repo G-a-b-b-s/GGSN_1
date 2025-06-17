@@ -1,0 +1,968 @@
+t0031
+t0031
+t0031
+t0031
+t0031
+t0031
+t0031
+t0031
+t0031
+t0031
+
+Modules based on Lua: Version 8.5.8  2021-06-30 14:16 -05:00
+    by Robert McLay mclay@tacc.utexas.edu
+
+module [options] sub-command [args ...]
+
+Help sub-commands:
+------------------
+  help                              prints this message
+  help                module [...]  print help message from module(s)
+
+Loading/Unloading sub-commands:
+-------------------------------
+  load | add          module [...]  load module(s)
+  try-load | try-add  module [...]  Add module(s), do not complain if not
+                                    found
+  del | unload        module [...]  Remove module(s), do not complain if not
+                                    found
+  swap | sw | switch  m1 m2         unload m1 and load m2
+  purge                             unload all modules
+  refresh                           reload aliases from current list of
+                                    modules.
+  update                            reload all currently loaded modules.
+
+Listing / Searching sub-commands:
+---------------------------------
+  list                              List loaded modules
+  list                s1 s2 ...     List loaded modules that match the
+                                    pattern
+  avail | av                        List available modules
+  avail | av          string        List available modules that contain
+                                    "string".
+  spider                            List all possible modules
+  spider              module        List all possible version of that module
+                                    file
+  spider              string        List all module that contain the
+                                    "string".
+  spider              name/version  Detailed information about that version
+                                    of the module.
+  whatis              module        Print whatis information about module
+  keyword | key       string        Search all name and whatis that contain
+                                    "string".
+
+Searching with Lmod:
+--------------------
+  All searching (spider, list, avail, keyword) support regular expressions:
+  
+
+  -r spider           '^p'          Finds all the modules that start with
+                                    `p' or `P'
+  -r spider           mpi           Finds all modules that have "mpi" in
+                                    their name.
+  -r spider           'mpi$         Finds all modules that end with "mpi" in
+                                    their name.
+
+Handling a collection of modules:
+--------------------------------
+  save | s                          Save the current list of modules to a
+                                    user defined "default" collection.
+  save | s            name          Save the current list of modules to
+                                    "name" collection.
+  reset                             The same as "restore system"
+  restore | r                       Restore modules from the user's
+                                    "default" or system default.
+  restore | r         name          Restore modules from "name" collection.
+  restore             system        Restore module state to system defaults.
+  savelist                          List of saved collections.
+  describe | mcc      name          Describe the contents of a module
+                                    collection.
+  disable             name          Disable (i.e. remove) a collection.
+
+Deprecated commands:
+--------------------
+  getdefault          [name]        load name collection of modules or
+                                    user's "default" if no name given.
+                                    ===> Use "restore" instead <====
+  setdefault          [name]        Save current list of modules to name if
+                                    given, otherwise save as the default
+                                    list for you the user.
+                                    ===> Use "save" instead. <====
+
+Miscellaneous sub-commands:
+---------------------------
+  is-loaded           modulefile    return a true status if module is loaded
+  is-avail            modulefile    return a true status if module can be
+                                    loaded
+  show                modulefile    show the commands in the module file.
+  use [-a]            path          Prepend or Append path to MODULEPATH.
+  unuse               path          remove path from MODULEPATH.
+  tablelist                         output list of active modules as a lua
+                                    table.
+
+Important Environment Variables:
+--------------------------------
+  LMOD_COLORIZE                     If defined to be "YES" then Lmod prints
+                                    properties and warning in color.
+
+    --------------------------------------------------------------------------
+
+Lmod Web Sites
+
+  Documentation:    http://lmod.readthedocs.org
+  GitHub:           https://github.com/TACC/Lmod
+  SourceForge:      https://lmod.sf.net
+  TACC Homepage:    https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
+
+  To report a bug please read http://lmod.readthedocs.io/en/latest/075_bug_reporting.html
+    --------------------------------------------------------------------------
+
+
+2025-06-17 13:00:54.633676: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1750158054.806272 2997031 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1750158054.868636 2997031 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-06-17 13:00:55.193506: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Warning: Looks like you're using an outdated `kagglehub` version (installed: 0.3.10), please consider upgrading to the latest version (0.3.12).
+W0000 00:00:1750158060.956489 2997031 gpu_device.cc:2344] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/p.py:139: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  plt.figure(figsize=(12, 5))
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/net/tscratch/people/plggabcza/env-test/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+Path to dataset files: /net/people/plgrid/plggabcza/.cache/kagglehub/datasets/muhammadtahir194/movies-dataset-tmdb-top-rated/versions/1
+                 id   popularity  vote_average    vote_count
+count  8.558000e+03  8558.000000   8558.000000   8558.000000
+mean   2.080624e+05     3.721862      6.845289   2159.663239
+std    2.766509e+05     0.770267      0.597449   3370.798591
+min    2.000000e+00     0.003000      5.800000    300.000000
+25%    1.001750e+04     3.533000      6.371000    480.000000
+50%    3.682650e+04     3.557500      6.800000    903.500000
+75%    3.851218e+05     3.817000      7.300000   2193.750000
+max    1.356039e+06    29.661000      8.708000  37174.000000
+   vote_average  vote_count  is_popular  release_year
+0         8.708       27883           1          1994
+1         8.689       21151           1          1972
+2         8.570       12771           1          1974
+3         8.567       16219           1          1993
+4         8.524         431           1          2025
+X shape: (8558, 3)
+y shape: (8558,)
+Unique y values in the dataset:  2
+Po SMOTE - X: (10206, 3)
+Po SMOTE - y: [5103 5103]
+Training Set: (10206, 3), Validation Set: (1284, 3), Test Set: (1284, 3)
+
+--- Order 1: ['batch_norm', 'regularization', 'optimizer', 'layers', 'batch_size', 'dropout_rate', 'neurons', 'activation', 'learning_rate'] ---
+Candidate False: train_acc = 0.8575, train_loss = 0.4859, val_acc = 0.8364, val_loss = 0.4222, test_acc = 0.8037
+Candidate True: train_acc = 0.8528, train_loss = 0.4932, val_acc = 0.8178, val_loss = 0.4137, test_acc = 0.7991
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate l1_0.0001: train_acc = 0.8481, train_loss = 0.5569, val_acc = 0.8310, val_loss = 0.4889, test_acc = 0.8069
+Candidate l1_0.001: train_acc = 0.8551, train_loss = 1.0117, val_acc = 0.8341, val_loss = 0.9554, test_acc = 0.8123
+Candidate l1_0.01: train_acc = 0.8606, train_loss = 0.7508, val_acc = 0.8544, val_loss = 0.7204, test_acc = 0.8481
+Candidate l1_0.1: train_acc = 0.8528, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7138, test_acc = 0.8520
+Candidate l2_0.0001: train_acc = 0.8762, train_loss = 0.5014, val_acc = 0.8411, val_loss = 0.4282, test_acc = 0.8146
+Candidate l2_0.001: train_acc = 0.8512, train_loss = 0.6144, val_acc = 0.8326, val_loss = 0.5512, test_acc = 0.8107
+Candidate l2_0.01: train_acc = 0.8575, train_loss = 0.9127, val_acc = 0.8427, val_loss = 0.8678, test_acc = 0.8201
+Candidate l2_0.1: train_acc = 0.8520, train_loss = 0.6932, val_acc = 0.1480, val_loss = 0.6932, test_acc = 0.1480
+Candidate l1l2_0.0001: train_acc = 0.8598, train_loss = 0.5673, val_acc = 0.8279, val_loss = 0.5074, test_acc = 0.8061
+Candidate l1l2_0.001: train_acc = 0.8481, train_loss = 1.0750, val_acc = 0.8380, val_loss = 1.0134, test_acc = 0.8123
+Candidate l1l2_0.01: train_acc = 0.8520, train_loss = 0.6934, val_acc = 0.8520, val_loss = 0.6929, test_acc = 0.8520
+Candidate l1l2_0.1: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7140, test_acc = 0.8520
+Candidate l1_0.1_l2_0.01: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7140, test_acc = 0.8520
+Candidate l1_0.1_l2_0.001: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7138, test_acc = 0.8520
+Candidate l1_0.1_l2_0.0001: train_acc = 0.8528, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7141, test_acc = 0.8520
+Candidate l1_0.01_l2_0.1: train_acc = 0.8801, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7139, test_acc = 0.8520
+Candidate l1_0.01_l2_0.001: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7140, test_acc = 0.8520
+Candidate l1_0.01_l2_0.0001: train_acc = 0.8731, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7141, test_acc = 0.8520
+Candidate l1_0.001_l2_0.1: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7139, test_acc = 0.8520
+Candidate l1_0.001_l2_0.01: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7143, test_acc = 0.8520
+Candidate l1_0.001_l2_0.0001: train_acc = 0.8676, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7139, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.1: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7139, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.01: train_acc = 0.8660, train_loss = 0.7141, val_acc = 0.1480, val_loss = 0.7140, test_acc = 0.1480
+Candidate l1_0.0001_l2_0.001: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7141, test_acc = 0.8520
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>, 'batch_norm': False} for dataset movies
+Selected Regularizer: l1_0.01
+Candidate adam: train_acc = 0.8520, train_loss = 0.6982, val_acc = 0.8520, val_loss = 0.6975, test_acc = 0.8520
+Candidate rmsprop: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.1480, val_loss = 0.7143, test_acc = 0.1480
+Candidate sgd: train_acc = 0.8769, train_loss = 0.7124, val_acc = 0.1480, val_loss = 0.7109, test_acc = 0.1480
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'adam', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>, 'batch_norm': False} for dataset movies
+Candidate 1: train_acc = 0.8512, train_loss = 0.4989, val_acc = 0.8372, val_loss = 0.4273, test_acc = 0.8123
+Candidate 2: train_acc = 0.8528, train_loss = 0.5438, val_acc = 0.8224, val_loss = 0.4935, test_acc = 0.8100
+Candidate 3: train_acc = 0.8551, train_loss = 0.5698, val_acc = 0.8185, val_loss = 0.5371, test_acc = 0.8115
+Candidate 4: train_acc = 0.8520, train_loss = 0.6971, val_acc = 0.8520, val_loss = 0.6964, test_acc = 0.8520
+Candidate 5: train_acc = 0.8520, train_loss = 0.6983, val_acc = 0.8520, val_loss = 0.6977, test_acc = 0.8520
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 4, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'adam', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>, 'batch_norm': False} for dataset movies
+Candidate 8: train_acc = 0.8520, train_loss = 0.6969, val_acc = 0.8520, val_loss = 0.6956, test_acc = 0.8520
+Candidate 16: train_acc = 0.8520, train_loss = 0.6970, val_acc = 0.8520, val_loss = 0.6963, test_acc = 0.8520
+Candidate 32: train_acc = 0.8520, train_loss = 0.6970, val_acc = 0.8520, val_loss = 0.6968, test_acc = 0.8520
+Candidate 64: train_acc = 0.8520, train_loss = 0.6970, val_acc = 0.1480, val_loss = 0.6977, test_acc = 0.1480
+Candidate 128: train_acc = 0.8536, train_loss = 0.6971, val_acc = 0.8520, val_loss = 0.6965, test_acc = 0.8520
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 4, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'adam', 'learning_rate': 0.001, 'batch_size': 8, 'regularization': <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>, 'batch_norm': False} for dataset movies
+Candidate 0: train_acc = 0.8326, train_loss = 0.5371, val_acc = 0.8294, val_loss = 0.5093, test_acc = 0.8154
+Candidate 0.1: train_acc = 0.8520, train_loss = 0.6970, val_acc = 0.8520, val_loss = 0.6956, test_acc = 0.8520
+Candidate 0.2: train_acc = 0.8520, train_loss = 0.6969, val_acc = 0.8520, val_loss = 0.6957, test_acc = 0.8520
+Candidate 0.3: train_acc = 0.8520, train_loss = 0.6969, val_acc = 0.8520, val_loss = 0.6957, test_acc = 0.8520
+Candidate 0.4: train_acc = 0.8520, train_loss = 0.6969, val_acc = 0.8520, val_loss = 0.6955, test_acc = 0.8520
+Candidate 0.5: train_acc = 0.8520, train_loss = 0.6968, val_acc = 0.8520, val_loss = 0.6956, test_acc = 0.8520
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 4, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'adam', 'learning_rate': 0.001, 'batch_size': 8, 'regularization': <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>, 'batch_norm': False} for dataset movies
+Candidate 4: train_acc = 0.8590, train_loss = 0.5999, val_acc = 0.8131, val_loss = 0.5570, test_acc = 0.8076
+Candidate 8: train_acc = 0.8302, train_loss = 0.6208, val_acc = 0.8084, val_loss = 0.5145, test_acc = 0.7889
+Candidate 16: train_acc = 0.8536, train_loss = 0.6026, val_acc = 0.8248, val_loss = 0.5728, test_acc = 0.8123
+Candidate 32: train_acc = 0.8520, train_loss = 0.6970, val_acc = 0.8520, val_loss = 0.6957, test_acc = 0.8520
+Candidate 64: train_acc = 0.8520, train_loss = 0.7085, val_acc = 0.8520, val_loss = 0.7071, test_acc = 0.8520
+Candidate 128: train_acc = 0.8520, train_loss = 0.7548, val_acc = 0.8520, val_loss = 0.7537, test_acc = 0.8520
+Candidate 256: train_acc = 0.8520, train_loss = 0.9385, val_acc = 0.8520, val_loss = 0.9369, test_acc = 0.8520
+Candidate 512: train_acc = 0.8520, train_loss = 1.6625, val_acc = 0.8520, val_loss = 1.6575, test_acc = 0.8520
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 4, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'adam', 'learning_rate': 0.001, 'batch_size': 8, 'regularization': <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>, 'batch_norm': False} for dataset movies
+Candidate relu: train_acc = 0.8520, train_loss = 0.6969, val_acc = 0.8520, val_loss = 0.6956, test_acc = 0.8520
+Candidate tanh: train_acc = 0.8411, train_loss = 0.5794, val_acc = 0.8302, val_loss = 0.5397, test_acc = 0.8178
+Candidate sigmoid: train_acc = 0.8520, train_loss = 0.6974, val_acc = 0.8520, val_loss = 0.6868, test_acc = 0.8520
+Candidate elu: train_acc = 0.8372, train_loss = 0.5748, val_acc = 0.8224, val_loss = 0.5352, test_acc = 0.8162
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 4, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'adam', 'learning_rate': 0.001, 'batch_size': 8, 'regularization': <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>, 'batch_norm': False} for dataset movies
+Candidate 0.001: train_acc = 0.8520, train_loss = 0.6969, val_acc = 0.8520, val_loss = 0.6957, test_acc = 0.8520
+Candidate 0.01: train_acc = 0.8520, train_loss = 0.7330, val_acc = 0.8520, val_loss = 0.7173, test_acc = 0.8520
+Candidate 0.1: train_acc = 0.8520, train_loss = 1.1039, val_acc = 0.8520, val_loss = 1.0807, test_acc = 0.8520
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 4, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'adam', 'learning_rate': 0.001, 'batch_size': 8, 'regularization': <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>, 'batch_norm': False} for dataset movies
+Final test accuracy for order 1: 0.8520249128341675
+
+--- Order 2: ['batch_norm', 'layers', 'neurons', 'optimizer', 'dropout_rate', 'batch_size', 'activation', 'regularization', 'learning_rate'] ---
+Candidate False: train_acc = 0.8497, train_loss = 0.4929, val_acc = 0.8279, val_loss = 0.4294, test_acc = 0.7975
+Candidate True: train_acc = 0.8146, train_loss = 0.4887, val_acc = 0.7960, val_loss = 0.4444, test_acc = 0.7656
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate 1: train_acc = 0.8505, train_loss = 0.4904, val_acc = 0.8481, val_loss = 0.4518, test_acc = 0.8341
+Candidate 2: train_acc = 0.8520, train_loss = 0.4859, val_acc = 0.8489, val_loss = 0.4357, test_acc = 0.8294
+Candidate 3: train_acc = 0.8551, train_loss = 0.4833, val_acc = 0.8396, val_loss = 0.4322, test_acc = 0.8178
+Candidate 4: train_acc = 0.8621, train_loss = 0.4852, val_acc = 0.8357, val_loss = 0.4219, test_acc = 0.8115
+Candidate 5: train_acc = 0.8489, train_loss = 0.4876, val_acc = 0.8287, val_loss = 0.4299, test_acc = 0.7991
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate 4: train_acc = 0.8598, train_loss = 0.5260, val_acc = 0.8466, val_loss = 0.4508, test_acc = 0.8201
+Candidate 8: train_acc = 0.8279, train_loss = 0.5296, val_acc = 0.8232, val_loss = 0.4845, test_acc = 0.8107
+Candidate 16: train_acc = 0.8668, train_loss = 0.4940, val_acc = 0.8474, val_loss = 0.4448, test_acc = 0.8248
+Candidate 32: train_acc = 0.8598, train_loss = 0.4921, val_acc = 0.8536, val_loss = 0.4435, test_acc = 0.8287
+Candidate 64: train_acc = 0.8536, train_loss = 0.4770, val_acc = 0.8520, val_loss = 0.4328, test_acc = 0.8201
+Candidate 128: train_acc = 0.8528, train_loss = 0.4725, val_acc = 0.8489, val_loss = 0.4317, test_acc = 0.8217
+Candidate 256: train_acc = 0.8785, train_loss = 0.4708, val_acc = 0.8481, val_loss = 0.4312, test_acc = 0.8232
+Candidate 512: train_acc = 0.8544, train_loss = 0.4686, val_acc = 0.8489, val_loss = 0.4302, test_acc = 0.8217
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate adam: train_acc = 0.8435, train_loss = 0.4331, val_acc = 0.8107, val_loss = 0.3880, test_acc = 0.7804
+Candidate rmsprop: train_acc = 0.8435, train_loss = 0.4420, val_acc = 0.8084, val_loss = 0.4059, test_acc = 0.7695
+Candidate sgd: train_acc = 0.8769, train_loss = 0.4864, val_acc = 0.8505, val_loss = 0.4366, test_acc = 0.8271
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate 0: train_acc = 0.8684, train_loss = 0.4654, val_acc = 0.8458, val_loss = 0.4272, test_acc = 0.8193
+Candidate 0.1: train_acc = 0.8544, train_loss = 0.4875, val_acc = 0.8497, val_loss = 0.4367, test_acc = 0.8248
+Candidate 0.2: train_acc = 0.8575, train_loss = 0.4954, val_acc = 0.8489, val_loss = 0.4344, test_acc = 0.8263
+Candidate 0.3: train_acc = 0.8536, train_loss = 0.5149, val_acc = 0.8489, val_loss = 0.4510, test_acc = 0.8310
+Candidate 0.4: train_acc = 0.8808, train_loss = 0.5140, val_acc = 0.8481, val_loss = 0.4517, test_acc = 0.8255
+Candidate 0.5: train_acc = 0.8668, train_loss = 0.5395, val_acc = 0.8520, val_loss = 0.4675, test_acc = 0.8279
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate 8: train_acc = 0.8505, train_loss = 0.5114, val_acc = 0.8326, val_loss = 0.4451, test_acc = 0.8139
+Candidate 16: train_acc = 0.8738, train_loss = 0.5404, val_acc = 0.8481, val_loss = 0.4639, test_acc = 0.8279
+Candidate 32: train_acc = 0.8567, train_loss = 0.5550, val_acc = 0.8567, val_loss = 0.4844, test_acc = 0.8481
+Candidate 64: train_acc = 0.8006, train_loss = 0.5933, val_acc = 0.7998, val_loss = 0.5267, test_acc = 0.7835
+Candidate 128: train_acc = 0.8660, train_loss = 0.6265, val_acc = 0.8435, val_loss = 0.5833, test_acc = 0.8302
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 32, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate relu: train_acc = 0.8598, train_loss = 0.5626, val_acc = 0.8559, val_loss = 0.4753, test_acc = 0.8396
+Candidate tanh: train_acc = 0.8738, train_loss = 0.5243, val_acc = 0.8403, val_loss = 0.4655, test_acc = 0.8217
+Candidate sigmoid: train_acc = 0.7960, train_loss = 0.6947, val_acc = 0.7726, val_loss = 0.6812, test_acc = 0.7461
+Candidate elu: train_acc = 0.8481, train_loss = 0.5369, val_acc = 0.8474, val_loss = 0.4713, test_acc = 0.8318
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 32, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate l1_0.0001: train_acc = 0.8318, train_loss = 0.5783, val_acc = 0.8318, val_loss = 0.5037, test_acc = 0.8209
+Candidate l1_0.001: train_acc = 0.8357, train_loss = 0.7165, val_acc = 0.8357, val_loss = 0.6655, test_acc = 0.8146
+Candidate l1_0.01: train_acc = 0.8442, train_loss = 1.0611, val_acc = 0.8442, val_loss = 1.0075, test_acc = 0.8217
+Candidate l1_0.1: train_acc = 0.8497, train_loss = 0.6988, val_acc = 0.1480, val_loss = 0.6994, test_acc = 0.1480
+Candidate l2_0.0001: train_acc = 0.8240, train_loss = 0.5658, val_acc = 0.8240, val_loss = 0.5140, test_acc = 0.8030
+Candidate l2_0.001: train_acc = 0.8520, train_loss = 0.5862, val_acc = 0.8497, val_loss = 0.5108, test_acc = 0.8364
+Candidate l2_0.01: train_acc = 0.8287, train_loss = 0.7680, val_acc = 0.8287, val_loss = 0.7112, test_acc = 0.8107
+Candidate l2_0.1: train_acc = 0.8754, train_loss = 0.6884, val_acc = 0.8263, val_loss = 0.6788, test_acc = 0.8139
+Candidate l1l2_0.0001: train_acc = 0.8512, train_loss = 0.5787, val_acc = 0.8512, val_loss = 0.5114, test_acc = 0.8388
+Candidate l1l2_0.001: train_acc = 0.8520, train_loss = 0.7265, val_acc = 0.8396, val_loss = 0.6611, test_acc = 0.8069
+Candidate l1l2_0.01: train_acc = 0.8629, train_loss = 0.8809, val_acc = 0.8629, val_loss = 0.8438, test_acc = 0.8551
+Candidate l1l2_0.1: train_acc = 0.8520, train_loss = 0.6987, val_acc = 0.1480, val_loss = 0.6990, test_acc = 0.1480
+Candidate l1_0.1_l2_0.01: train_acc = 0.8528, train_loss = 0.6988, val_acc = 0.8520, val_loss = 0.6983, test_acc = 0.8520
+Candidate l1_0.1_l2_0.001: train_acc = 0.8520, train_loss = 0.6989, val_acc = 0.8520, val_loss = 0.6981, test_acc = 0.8520
+Candidate l1_0.1_l2_0.0001: train_acc = 0.8871, train_loss = 0.6988, val_acc = 0.8520, val_loss = 0.6983, test_acc = 0.8520
+Candidate l1_0.01_l2_0.1: train_acc = 0.8754, train_loss = 0.6988, val_acc = 0.1480, val_loss = 0.6990, test_acc = 0.1480
+Candidate l1_0.01_l2_0.001: train_acc = 0.8832, train_loss = 0.6989, val_acc = 0.8520, val_loss = 0.6975, test_acc = 0.8520
+Candidate l1_0.01_l2_0.0001: train_acc = 0.8520, train_loss = 0.6988, val_acc = 0.8520, val_loss = 0.6983, test_acc = 0.8520
+Candidate l1_0.001_l2_0.1: train_acc = 0.8559, train_loss = 0.6988, val_acc = 0.8520, val_loss = 0.6986, test_acc = 0.8520
+Candidate l1_0.001_l2_0.01: train_acc = 0.8684, train_loss = 0.6989, val_acc = 0.8520, val_loss = 0.6983, test_acc = 0.8520
+Candidate l1_0.001_l2_0.0001: train_acc = 0.8676, train_loss = 0.6988, val_acc = 0.8520, val_loss = 0.6982, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.1: train_acc = 0.8520, train_loss = 0.6987, val_acc = 0.8520, val_loss = 0.6982, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.01: train_acc = 0.8520, train_loss = 0.6987, val_acc = 0.1480, val_loss = 0.6993, test_acc = 0.1480
+Candidate l1_0.0001_l2_0.001: train_acc = 0.8668, train_loss = 0.6988, val_acc = 0.8520, val_loss = 0.6987, test_acc = 0.8520
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 32, 'regularization': <keras.src.regularizers.regularizers.L1L2 object at 0x15261f41a610>, 'batch_norm': False} for dataset movies
+Selected Regularizer: l1l2_0.01
+Candidate 0.001: train_acc = 0.8544, train_loss = 0.8769, val_acc = 0.8544, val_loss = 0.8504, test_acc = 0.8380
+Candidate 0.01: train_acc = 0.8653, train_loss = 0.6305, val_acc = 0.8567, val_loss = 0.5996, test_acc = 0.8505
+Candidate 0.1: train_acc = 0.8738, train_loss = 0.6538, val_acc = 0.8349, val_loss = 0.6344, test_acc = 0.8271
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.01, 'batch_size': 32, 'regularization': <keras.src.regularizers.regularizers.L1L2 object at 0x15261f41a610>, 'batch_norm': False} for dataset movies
+Final test accuracy for order 2: 0.8520249128341675
+
+--- Order 3: ['layers', 'neurons', 'dropout_rate', 'optimizer', 'batch_norm', 'batch_size', 'activation', 'regularization', 'learning_rate'] ---
+Candidate 1: train_acc = 0.8474, train_loss = 0.4907, val_acc = 0.8466, val_loss = 0.4474, test_acc = 0.8326
+Candidate 2: train_acc = 0.8559, train_loss = 0.4864, val_acc = 0.8544, val_loss = 0.4394, test_acc = 0.8287
+Candidate 3: train_acc = 0.8676, train_loss = 0.4844, val_acc = 0.8388, val_loss = 0.4325, test_acc = 0.8154
+Candidate 4: train_acc = 0.8660, train_loss = 0.4843, val_acc = 0.8318, val_loss = 0.4296, test_acc = 0.8037
+Candidate 5: train_acc = 0.8528, train_loss = 0.4918, val_acc = 0.8302, val_loss = 0.4280, test_acc = 0.8061
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate 4: train_acc = 0.8575, train_loss = 0.5336, val_acc = 0.8489, val_loss = 0.5109, test_acc = 0.8364
+Candidate 8: train_acc = 0.8559, train_loss = 0.5140, val_acc = 0.8497, val_loss = 0.4617, test_acc = 0.8302
+Candidate 16: train_acc = 0.8474, train_loss = 0.5001, val_acc = 0.8474, val_loss = 0.4489, test_acc = 0.8271
+Candidate 32: train_acc = 0.8544, train_loss = 0.4827, val_acc = 0.8489, val_loss = 0.4314, test_acc = 0.8287
+Candidate 64: train_acc = 0.8520, train_loss = 0.4778, val_acc = 0.8481, val_loss = 0.4273, test_acc = 0.8209
+Candidate 128: train_acc = 0.8824, train_loss = 0.4717, val_acc = 0.8481, val_loss = 0.4299, test_acc = 0.8201
+Candidate 256: train_acc = 0.8567, train_loss = 0.4697, val_acc = 0.8497, val_loss = 0.4302, test_acc = 0.8232
+Candidate 512: train_acc = 0.8723, train_loss = 0.4687, val_acc = 0.8474, val_loss = 0.4306, test_acc = 0.8224
+Temporal Best Hyperparameters: {'neurons': 8, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate 0: train_acc = 0.8598, train_loss = 0.4733, val_acc = 0.8388, val_loss = 0.4325, test_acc = 0.8232
+Candidate 0.1: train_acc = 0.8559, train_loss = 0.5054, val_acc = 0.8357, val_loss = 0.4458, test_acc = 0.8232
+Candidate 0.2: train_acc = 0.8731, train_loss = 0.5325, val_acc = 0.8505, val_loss = 0.4657, test_acc = 0.8263
+Candidate 0.3: train_acc = 0.8621, train_loss = 0.5592, val_acc = 0.8427, val_loss = 0.4864, test_acc = 0.8310
+Candidate 0.4: train_acc = 0.8512, train_loss = 0.5901, val_acc = 0.8512, val_loss = 0.5481, test_acc = 0.8357
+Candidate 0.5: train_acc = 0.8263, train_loss = 0.5917, val_acc = 0.8263, val_loss = 0.5260, test_acc = 0.8084
+Temporal Best Hyperparameters: {'neurons': 8, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.4, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate adam: train_acc = 0.8435, train_loss = 0.5075, val_acc = 0.8224, val_loss = 0.4287, test_acc = 0.8037
+Candidate rmsprop: train_acc = 0.8442, train_loss = 0.5178, val_acc = 0.7983, val_loss = 0.4338, test_acc = 0.7726
+Candidate sgd: train_acc = 0.8645, train_loss = 0.5758, val_acc = 0.8645, val_loss = 0.5404, test_acc = 0.8559
+Temporal Best Hyperparameters: {'neurons': 8, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.4, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate False: train_acc = 0.8676, train_loss = 0.5788, val_acc = 0.8645, val_loss = 0.5231, test_acc = 0.8536
+Candidate True: train_acc = 0.8660, train_loss = 0.5487, val_acc = 0.8427, val_loss = 0.4674, test_acc = 0.8240
+Temporal Best Hyperparameters: {'neurons': 8, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.4, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate 8: train_acc = 0.8528, train_loss = 0.5529, val_acc = 0.8505, val_loss = 0.5003, test_acc = 0.8326
+Candidate 16: train_acc = 0.7243, train_loss = 0.5974, val_acc = 0.7243, val_loss = 0.5437, test_acc = 0.6931
+Candidate 32: train_acc = 0.8583, train_loss = 0.5765, val_acc = 0.8536, val_loss = 0.5111, test_acc = 0.8505
+Candidate 64: train_acc = 0.8481, train_loss = 0.6243, val_acc = 0.8458, val_loss = 0.5573, test_acc = 0.8411
+Candidate 128: train_acc = 0.7305, train_loss = 0.6679, val_acc = 0.6410, val_loss = 0.6576, test_acc = 0.5997
+Temporal Best Hyperparameters: {'neurons': 8, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.4, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 32, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate relu: train_acc = 0.8505, train_loss = 0.6063, val_acc = 0.8411, val_loss = 0.5445, test_acc = 0.8224
+Candidate tanh: train_acc = 0.8660, train_loss = 0.5496, val_acc = 0.8349, val_loss = 0.4739, test_acc = 0.8170
+Candidate sigmoid: train_acc = 0.8816, train_loss = 0.6943, val_acc = 0.7679, val_loss = 0.6896, test_acc = 0.7788
+Candidate elu: train_acc = 0.8637, train_loss = 0.5474, val_acc = 0.8380, val_loss = 0.4831, test_acc = 0.8185
+Temporal Best Hyperparameters: {'neurons': 8, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.4, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 32, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate l1_0.0001: train_acc = 0.8271, train_loss = 0.6167, val_acc = 0.8271, val_loss = 0.5763, test_acc = 0.8030
+Candidate l1_0.001: train_acc = 0.7921, train_loss = 0.6208, val_acc = 0.7921, val_loss = 0.5303, test_acc = 0.7586
+Candidate l1_0.01: train_acc = 0.8357, train_loss = 0.7661, val_acc = 0.8357, val_loss = 0.7309, test_acc = 0.8185
+Candidate l1_0.1: train_acc = 0.8785, train_loss = 0.6936, val_acc = 0.1480, val_loss = 0.6944, test_acc = 0.1480
+Candidate l2_0.0001: train_acc = 0.8583, train_loss = 0.6233, val_acc = 0.8520, val_loss = 0.5819, test_acc = 0.8411
+Candidate l2_0.001: train_acc = 0.8847, train_loss = 0.6096, val_acc = 0.8263, val_loss = 0.5670, test_acc = 0.7960
+Candidate l2_0.01: train_acc = 0.8458, train_loss = 0.6522, val_acc = 0.8271, val_loss = 0.6031, test_acc = 0.8022
+Candidate l2_0.1: train_acc = 0.8653, train_loss = 0.6947, val_acc = 0.8497, val_loss = 0.6934, test_acc = 0.8364
+Candidate l1l2_0.0001: train_acc = 0.7570, train_loss = 0.6184, val_acc = 0.7570, val_loss = 0.5750, test_acc = 0.7313
+Candidate l1l2_0.001: train_acc = 0.8551, train_loss = 0.6232, val_acc = 0.8551, val_loss = 0.5793, test_acc = 0.8474
+Candidate l1l2_0.01: train_acc = 0.7095, train_loss = 0.7772, val_acc = 0.7095, val_loss = 0.7494, test_acc = 0.6885
+Candidate l1l2_0.1: train_acc = 0.8014, train_loss = 0.6936, val_acc = 0.1480, val_loss = 0.6937, test_acc = 0.1480
+Candidate l1_0.1_l2_0.01: train_acc = 0.8855, train_loss = 0.6937, val_acc = 0.1480, val_loss = 0.6950, test_acc = 0.1480
+Candidate l1_0.1_l2_0.001: train_acc = 0.8832, train_loss = 0.6936, val_acc = 0.8520, val_loss = 0.6924, test_acc = 0.8520
+Candidate l1_0.1_l2_0.0001: train_acc = 0.8824, train_loss = 0.6939, val_acc = 0.1480, val_loss = 0.6944, test_acc = 0.1480
+Candidate l1_0.01_l2_0.1: train_acc = 0.8824, train_loss = 0.6936, val_acc = 0.1480, val_loss = 0.6939, test_acc = 0.1480
+Candidate l1_0.01_l2_0.001: train_acc = 0.8832, train_loss = 0.6936, val_acc = 0.1480, val_loss = 0.6953, test_acc = 0.1480
+Candidate l1_0.01_l2_0.0001: train_acc = 0.8808, train_loss = 0.6938, val_acc = 0.8520, val_loss = 0.6916, test_acc = 0.8520
+Candidate l1_0.001_l2_0.1: train_acc = 0.8544, train_loss = 0.6938, val_acc = 0.1480, val_loss = 0.6949, test_acc = 0.1480
+Candidate l1_0.001_l2_0.01: train_acc = 0.8847, train_loss = 0.6936, val_acc = 0.8520, val_loss = 0.6932, test_acc = 0.8520
+Candidate l1_0.001_l2_0.0001: train_acc = 0.8847, train_loss = 0.6938, val_acc = 0.8520, val_loss = 0.6908, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.1: train_acc = 0.8520, train_loss = 0.6937, val_acc = 0.8520, val_loss = 0.6930, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.01: train_acc = 0.8520, train_loss = 0.6937, val_acc = 0.8520, val_loss = 0.6912, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.001: train_acc = 0.8520, train_loss = 0.6936, val_acc = 0.8520, val_loss = 0.6917, test_acc = 0.8520
+Temporal Best Hyperparameters: {'neurons': 8, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.4, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 32, 'regularization': <keras.src.regularizers.regularizers.L1L2 object at 0x15261f41a5b0>, 'batch_norm': False} for dataset movies
+Selected Regularizer: l1l2_0.001
+Candidate 0.001: train_acc = 0.8497, train_loss = 0.6161, val_acc = 0.8287, val_loss = 0.5539, test_acc = 0.8217
+Candidate 0.01: train_acc = 0.8505, train_loss = 0.5592, val_acc = 0.8224, val_loss = 0.4762, test_acc = 0.8092
+Candidate 0.1: train_acc = 0.8544, train_loss = 0.5517, val_acc = 0.8037, val_loss = 0.5230, test_acc = 0.7780
+Temporal Best Hyperparameters: {'neurons': 8, 'layers': 2, 'activation': 'relu', 'dropout_rate': 0.4, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 32, 'regularization': <keras.src.regularizers.regularizers.L1L2 object at 0x15261f41a5b0>, 'batch_norm': False} for dataset movies
+Final test accuracy for order 3: 0.7305296063423157
+
+--- Order 4: ['optimizer', 'dropout_rate', 'regularization', 'neurons', 'batch_norm', 'learning_rate', 'batch_size', 'activation', 'layers'] ---
+Candidate adam: train_acc = 0.8154, train_loss = 0.4321, val_acc = 0.8084, val_loss = 0.3932, test_acc = 0.7710
+Candidate rmsprop: train_acc = 0.8240, train_loss = 0.4475, val_acc = 0.8107, val_loss = 0.3997, test_acc = 0.7718
+Candidate sgd: train_acc = 0.8481, train_loss = 0.4844, val_acc = 0.8302, val_loss = 0.4235, test_acc = 0.8030
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.1, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate 0: train_acc = 0.8512, train_loss = 0.4518, val_acc = 0.8318, val_loss = 0.4166, test_acc = 0.8022
+Candidate 0.1: train_acc = 0.8536, train_loss = 0.4866, val_acc = 0.8302, val_loss = 0.4243, test_acc = 0.8053
+Candidate 0.2: train_acc = 0.8489, train_loss = 0.5119, val_acc = 0.8427, val_loss = 0.4469, test_acc = 0.8170
+Candidate 0.3: train_acc = 0.8590, train_loss = 0.5494, val_acc = 0.8466, val_loss = 0.4676, test_acc = 0.8326
+Candidate 0.4: train_acc = 0.8832, train_loss = 0.5696, val_acc = 0.8598, val_loss = 0.4899, test_acc = 0.8442
+Candidate 0.5: train_acc = 0.8894, train_loss = 0.5838, val_acc = 0.8769, val_loss = 0.5026, test_acc = 0.8699
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': None, 'batch_norm': False} for dataset movies
+Candidate l1_0.0001: train_acc = 0.8871, train_loss = 0.6979, val_acc = 0.8590, val_loss = 0.6288, test_acc = 0.8528
+Candidate l1_0.001: train_acc = 0.8910, train_loss = 1.1027, val_acc = 0.8777, val_loss = 1.0254, test_acc = 0.8653
+Candidate l1_0.01: train_acc = 0.8559, train_loss = 0.7038, val_acc = 0.8520, val_loss = 0.7030, test_acc = 0.8520
+Candidate l1_0.1: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.1480, val_loss = 0.7148, test_acc = 0.1480
+Candidate l2_0.0001: train_acc = 0.8824, train_loss = 0.6185, val_acc = 0.8808, val_loss = 0.5447, test_acc = 0.8707
+Candidate l2_0.001: train_acc = 0.8925, train_loss = 0.7361, val_acc = 0.8520, val_loss = 0.6815, test_acc = 0.8505
+Candidate l2_0.01: train_acc = 0.8240, train_loss = 1.0223, val_acc = 0.8240, val_loss = 0.9758, test_acc = 0.8076
+Candidate l2_0.1: train_acc = 0.8590, train_loss = 0.6932, val_acc = 0.8520, val_loss = 0.6930, test_acc = 0.8520
+Candidate l1l2_0.0001: train_acc = 0.7882, train_loss = 0.6911, val_acc = 0.6604, val_loss = 0.6934, test_acc = 0.6059
+Candidate l1l2_0.001: train_acc = 0.8840, train_loss = 1.1674, val_acc = 0.8583, val_loss = 1.1002, test_acc = 0.8505
+Candidate l1l2_0.01: train_acc = 0.8536, train_loss = 0.6934, val_acc = 0.8520, val_loss = 0.6933, test_acc = 0.8520
+Candidate l1l2_0.1: train_acc = 0.8528, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7140, test_acc = 0.8520
+Candidate l1_0.1_l2_0.01: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7141, test_acc = 0.8520
+Candidate l1_0.1_l2_0.001: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7143, test_acc = 0.8520
+Candidate l1_0.1_l2_0.0001: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7139, test_acc = 0.8520
+Candidate l1_0.01_l2_0.1: train_acc = 0.8614, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7140, test_acc = 0.8520
+Candidate l1_0.01_l2_0.001: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7142, test_acc = 0.8520
+Candidate l1_0.01_l2_0.0001: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7140, test_acc = 0.8520
+Candidate l1_0.001_l2_0.1: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7142, test_acc = 0.8520
+Candidate l1_0.001_l2_0.01: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7139, test_acc = 0.8520
+Candidate l1_0.001_l2_0.0001: train_acc = 0.8606, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7141, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.1: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7139, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.01: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7143, test_acc = 0.8520
+Candidate l1_0.0001_l2_0.001: train_acc = 0.8520, train_loss = 0.7141, val_acc = 0.8520, val_loss = 0.7141, test_acc = 0.8520
+Temporal Best Hyperparameters: {'neurons': 32, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L2 object at 0x15261f41a370>, 'batch_norm': False} for dataset movies
+Selected Regularizer: l2_0.0001
+Candidate 4: train_acc = 0.8520, train_loss = 0.6943, val_acc = 0.8520, val_loss = 0.6914, test_acc = 0.8520
+Candidate 8: train_acc = 0.7586, train_loss = 0.6812, val_acc = 0.2928, val_loss = 0.7122, test_acc = 0.2593
+Candidate 16: train_acc = 0.8832, train_loss = 0.6589, val_acc = 0.8793, val_loss = 0.6169, test_acc = 0.8785
+Candidate 32: train_acc = 0.5997, train_loss = 0.6630, val_acc = 0.5997, val_loss = 0.6770, test_acc = 0.5522
+Candidate 64: train_acc = 0.8481, train_loss = 0.6034, val_acc = 0.8474, val_loss = 0.5266, test_acc = 0.8333
+Candidate 128: train_acc = 0.8474, train_loss = 0.5803, val_acc = 0.8403, val_loss = 0.4858, test_acc = 0.8107
+Candidate 256: train_acc = 0.8458, train_loss = 0.6048, val_acc = 0.8294, val_loss = 0.5315, test_acc = 0.8045
+Candidate 512: train_acc = 0.8497, train_loss = 0.6940, val_acc = 0.8209, val_loss = 0.6452, test_acc = 0.7960
+Temporal Best Hyperparameters: {'neurons': 16, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L2 object at 0x15261f41a370>, 'batch_norm': False} for dataset movies
+Candidate False: train_acc = 0.3302, train_loss = 0.6772, val_acc = 0.3302, val_loss = 0.7258, test_acc = 0.3154
+Candidate True: train_acc = 0.7593, train_loss = 0.6292, val_acc = 0.7336, val_loss = 0.6192, test_acc = 0.7017
+Temporal Best Hyperparameters: {'neurons': 16, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.001, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L2 object at 0x15261f41a370>, 'batch_norm': True} for dataset movies
+Candidate 0.001: train_acc = 0.8224, train_loss = 0.6506, val_acc = 0.7975, val_loss = 0.6233, test_acc = 0.7804
+Candidate 0.01: train_acc = 0.8816, train_loss = 0.5468, val_acc = 0.8037, val_loss = 0.4828, test_acc = 0.7850
+Candidate 0.1: train_acc = 0.8754, train_loss = 0.5330, val_acc = 0.8263, val_loss = 0.4404, test_acc = 0.7889
+Temporal Best Hyperparameters: {'neurons': 16, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.1, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L2 object at 0x15261f41a370>, 'batch_norm': True} for dataset movies
+Candidate 8: train_acc = 0.8536, train_loss = 0.5560, val_acc = 0.8279, val_loss = 0.4360, test_acc = 0.8053
+Candidate 16: train_acc = 0.8505, train_loss = 0.5363, val_acc = 0.8372, val_loss = 0.4186, test_acc = 0.8146
+Candidate 32: train_acc = 0.8396, train_loss = 0.5288, val_acc = 0.8279, val_loss = 0.4431, test_acc = 0.8014
+Candidate 64: train_acc = 0.8614, train_loss = 0.5202, val_acc = 0.8107, val_loss = 0.4433, test_acc = 0.7882
+Candidate 128: train_acc = 0.8754, train_loss = 0.5303, val_acc = 0.8248, val_loss = 0.4490, test_acc = 0.8084
+Temporal Best Hyperparameters: {'neurons': 16, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.1, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L2 object at 0x15261f41a370>, 'batch_norm': True} for dataset movies
+Candidate relu: train_acc = 0.8684, train_loss = 0.5348, val_acc = 0.8279, val_loss = 0.4319, test_acc = 0.7983
+Candidate tanh: train_acc = 0.8396, train_loss = 0.5378, val_acc = 0.8107, val_loss = 0.4526, test_acc = 0.7858
+Candidate sigmoid: train_acc = 0.8458, train_loss = 0.5306, val_acc = 0.8201, val_loss = 0.4447, test_acc = 0.8107
+Candidate elu: train_acc = 0.8372, train_loss = 0.5312, val_acc = 0.8061, val_loss = 0.4591, test_acc = 0.7882
+Temporal Best Hyperparameters: {'neurons': 16, 'layers': 5, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.1, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L2 object at 0x15261f41a370>, 'batch_norm': True} for dataset movies
+Candidate 1: train_acc = 0.8403, train_loss = 0.5071, val_acc = 0.8263, val_loss = 0.4350, test_acc = 0.7991
+Candidate 2: train_acc = 0.8427, train_loss = 0.5190, val_acc = 0.8217, val_loss = 0.4306, test_acc = 0.7913
+Candidate 3: train_acc = 0.8419, train_loss = 0.5250, val_acc = 0.8232, val_loss = 0.4230, test_acc = 0.7936
+Candidate 4: train_acc = 0.8458, train_loss = 0.5339, val_acc = 0.8232, val_loss = 0.4447, test_acc = 0.7991
+Candidate 5: train_acc = 0.8816, train_loss = 0.5360, val_acc = 0.8162, val_loss = 0.4515, test_acc = 0.7975
+Temporal Best Hyperparameters: {'neurons': 16, 'layers': 1, 'activation': 'relu', 'dropout_rate': 0.5, 'optimizer': 'sgd', 'learning_rate': 0.1, 'batch_size': 16, 'regularization': <keras.src.regularizers.regularizers.L2 object at 0x15261f41a370>, 'batch_norm': True} for dataset movies
+Final test accuracy for order 4: 0.809190034866333
+
+=== Final Best Hyperparameters ===
+The best set of hyperparameters was found using the following order of optimization:
+['batch_norm', 'regularization', 'optimizer', 'layers', 'batch_size', 'dropout_rate', 'neurons', 'activation', 'learning_rate']
+
+Best Hyperparameters:
+  - neurons: 32
+  - layers: 4
+  - activation: relu
+  - dropout_rate: 0.1
+  - optimizer: adam
+  - learning_rate: 0.001
+  - batch_size: 8
+  - regularization: <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>
+  - batch_norm: False
+
+Final Test Accuracy: 85.20% on dataset 'movies'
+
+Conclusion:
+After testing various orders of hyperparameter optimization, the optimal configuration was determined automatically based on validation and test performance.
+The best hyperparameters for the dataset 'movies' are:
+  * neurons: 32
+  * layers: 4
+  * activation: relu
+  * dropout_rate: 0.1
+  * optimizer: adam
+  * learning_rate: 0.001
+  * batch_size: 8
+  * regularization: <keras.src.regularizers.regularizers.L1 object at 0x15261f46ea30>
+  * batch_norm: False
+
+This configuration achieved a final test accuracy of 85.20%.
+Each hyperparameter was optimized by evaluating candidate values with respect to both training and validation metrics,
+and the final configuration was chosen based on the best validation performance, which in turn led to the highest test accuracy.
+This approach helps ensure that the selected hyperparameters generalize well to unseen data.
